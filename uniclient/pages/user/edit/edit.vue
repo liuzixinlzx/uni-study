@@ -194,11 +194,7 @@
 							data: res.data.data.userInfo
 						});
 						
-						setTimeout(()=>{
-							// uni.reLaunch({
-							// 	url: '/pages/user/info/info'
-							// })
-							
+						setTimeout(()=>{							
 							uni.navigateBack({
 								delta: 1
 							})

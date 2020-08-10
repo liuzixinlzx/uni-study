@@ -44,6 +44,7 @@
 
 <style>
 .split-line {
+	padding: 10rpx;
 	border-bottom: 2rpx #dedede solid;
 }
 
@@ -59,6 +60,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
+	font-size: 30rpx;
 	/* justify-content: flex-end; */
 }
 </style>

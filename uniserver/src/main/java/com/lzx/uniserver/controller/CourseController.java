@@ -32,7 +32,6 @@ public class CourseController {
 
     @RequestMapping("/list")
     public List<Course> getList(HttpServletRequest request) {
-        System.out.println("###### /course/list ######");
         String sdate = request.getParameter("date");
         LocalDate date = LocalDate.parse(sdate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LambdaQueryWrapper<Course> lqw = new LambdaQueryWrapper<>();
