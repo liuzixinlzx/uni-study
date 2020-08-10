@@ -61,6 +61,12 @@
 				"navigationBarTitleText": "消息推送"
 			}
         }
+        ,{
+            "path" : "pages/other/courseVideo/courseVideo",
+            "style" : {
+				"navigationBarTitleText": "视频教程"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

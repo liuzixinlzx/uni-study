@@ -10,8 +10,8 @@
 		</view>	
 		<view class="uni-list">
 			 <view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in list" :key="index">
-				  <view class="uni-list-cell-navigate uni-navigate-right" @click="clickItem(index)">
-					   {{item}}
+				  <view class="uni-list-cell-navigate uni-navigate-right" @click="clickItem(index)" v-if='index !=0 || (index == 0 && isAdmin)'>
+					{{item}}
 				  </view>
 			 </view>
 		 </view>
@@ -23,8 +23,9 @@
 		data() {
 			return {
 				imgsrc: '/static/logo.png',
-				list:['版本'],
-				nickName: '请点击头像登陆'
+				list:['消息推送', '视频教程','版本'],
+				isAdmin: false,
+				nickName: '请点击头像登陆',
 			}
 		},
 		
@@ -44,9 +45,7 @@
 					}
 					
 					if(res.data.username == 'admin'){
-						if (_this.list.length == 1){
-							_this.list.push('消息推送');
-						}
+						_this.isAdmin = true;
 					} 
 			    },
 			});

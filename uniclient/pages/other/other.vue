@@ -1,24 +1,29 @@
 <template>
 	<view>
-		<view v-if="index == '1'">
+		<view v-if="index == '0'">
 			<push-message> </push-message>
 		</view>
-		<view v-else>
-			{{contents}}
+		<view v-if="index == '1'">
+			<course-video> </course-video>
+		</view>
+		<view v-if="index == '2'">
+			{{version}}
 		</view>
 	</view>
 </template>
 
 <script>
 	import PushMessage from '@/pages/other/PushMessage/PushMessage'
+	import courseVideo from '@/pages/other/courseVideo/courseVideo'
 	export default {
 		components:{
-			PushMessage
+			PushMessage,
+			courseVideo
 		},
 		data() {
 			return {
 				index: '0',
-				contents:'',
+				version:'',
 			}
 		},
 		onLoad(options) {
@@ -40,7 +45,7 @@
 				var _this = this;
 				// #ifdef APP-PLUS
 				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {
-					_this.contents = widgetInfo.version;
+					_this.version = widgetInfo.version;
 					}
 				);
 				// #endif
