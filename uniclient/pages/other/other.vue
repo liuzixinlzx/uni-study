@@ -31,12 +31,22 @@
 			this.index = options.index;
 			switch (options.index){
 				case '0':
-					this.getVersion();
+					uni.setNavigationBarTitle({
+						title: "消息推送",
+					});
 					break;
 				case '1':
+					uni.setNavigationBarTitle({
+						title: "视频教程",
+					});
+					break;
+				case '2':
+					this.getVersion();
+					uni.setNavigationBarTitle({
+						title: "应用版本",
+					});
 					break;
 				default:
-					this.contents = "好像出错啦";
 					break;
 			}
 		},

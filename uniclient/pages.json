@@ -64,7 +64,6 @@
         ,{
             "path" : "pages/other/courseVideo/courseVideo",
             "style" : {
-				"navigationBarTitleText": "视频教程"
 			}
         }
     ],
