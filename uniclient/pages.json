@@ -1,0 +1,84 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/tabBar/index/index",
+			"style": {
+				"navigationStyle":"custom"
+				// "navigationBarTitleText": "首页"
+			}
+		}
+        ,{
+            "path" : "pages/tabBar/my/my",
+            "style": {
+				"navigationStyle":"custom"
+            }
+        }
+		,{
+		    "path" : "pages/tabBar/course/course",
+		    "style": {
+				"navigationStyle":"custom"
+		    	// "navigationBarTitleText": "课程表"
+		    }
+		}
+        ,{
+            "path" : "pages/other/other",
+            "style": {
+            	"navigationBarTitleText": "详情"
+            }
+        }
+        ,{
+            "path" : "pages/map/map",
+            "style": {
+            	"navigationBarTitleText": "地图"
+            }
+        }
+        ,{
+            "path" : "pages/user/login/login",
+            "style" : {
+				"navigationBarTitleText": "用户登录"
+			}
+        }
+        ,{
+            "path" : "pages/user/info/info",
+            "style" : {
+				"navigationBarTitleText": "用户信息"
+			}
+        }
+        ,{
+            "path" : "pages/user/edit/edit",
+            "style" : {
+			}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "状元教育",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [{
+			"pagePath": "pages/tabBar/index/index",
+			"iconPath": "static/component.png",
+			"selectedIconPath": "static/componentHL.png",
+			"text": "首页"
+			},
+			{
+				"pagePath": "pages/tabBar/course/course",
+				"iconPath": "static/component.png",
+				"selectedIconPath": "static/componentHL.png",
+				"text": "课程"
+			},
+			{
+				"pagePath": "pages/tabBar/my/my",
+				"iconPath": "static/component.png",
+				"selectedIconPath": "static/componentHL.png",
+				"text": "我的"
+			}
+		]
+	}
+}
