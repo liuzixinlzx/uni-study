@@ -7,17 +7,23 @@
 				// "navigationBarTitleText": "首页"
 			}
 		}
-        ,{
-            "path" : "pages/tabBar/my/my",
-            "style": {
-				"navigationStyle":"custom"
-            }
-        }
 		,{
 		    "path" : "pages/tabBar/course/course",
 		    "style": {
 				"navigationStyle":"custom"
 		    	// "navigationBarTitleText": "课程表"
+		    }
+		}
+		,{
+		    "path" : "pages/tabBar/message/message",
+		    "style" : {
+				"navigationStyle":"custom"
+			}
+		}
+		,{
+		    "path" : "pages/tabBar/my/my",
+		    "style": {
+				"navigationStyle":"custom"
 		    }
 		}
         ,{
@@ -49,6 +55,12 @@
             "style" : {
 			}
         }
+        ,{
+            "path" : "pages/other/PushMessage/PushMessage",
+            "style" : {
+				"navigationBarTitleText": "消息推送"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -57,26 +69,35 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
+		"height": "70px",
+		"fontSize": "16px",
+		"iconWidth": "30px",
 		"color": "#7A7E83",
 		"selectedColor": "#007AFF",
 		"borderStyle": "black",
 		"backgroundColor": "#F8F8F8",
 		"list": [{
 			"pagePath": "pages/tabBar/index/index",
-			"iconPath": "static/component.png",
-			"selectedIconPath": "static/componentHL.png",
+			"iconPath": "static/tabbar/basics.png",
+			"selectedIconPath": "static/tabbar/basics_cur.png",
 			"text": "首页"
 			},
 			{
 				"pagePath": "pages/tabBar/course/course",
-				"iconPath": "static/component.png",
-				"selectedIconPath": "static/componentHL.png",
+				"iconPath": "static/tabbar/plugin.png",
+				"selectedIconPath": "static/tabbar/plugin_cur.png",
 				"text": "课程"
 			},
 			{
+				"pagePath": "pages/tabBar/message/message",
+				"iconPath": "static/tabbar/component.png",
+				"selectedIconPath": "static/tabbar/component_cur.png",
+				"text": "消息"
+			},
+			{
 				"pagePath": "pages/tabBar/my/my",
-				"iconPath": "static/component.png",
-				"selectedIconPath": "static/componentHL.png",
+				"iconPath": "static/tabbar/about.png",
+				"selectedIconPath": "static/tabbar/about_cur.png",
 				"text": "我的"
 			}
 		]

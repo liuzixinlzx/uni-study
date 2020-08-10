@@ -66,6 +66,7 @@ public class UserController {
         Result res = new Result();
 
         String accessToken = request.getHeader("accessToken");
+
         Claims claims = TokenUtil.parseJWT(accessToken);
         String id = claims.getId();
         user.setId(Integer.parseInt(id));

@@ -242,6 +242,16 @@
 					method: "POST",
 					success: (res) => {
 						console.log('/user/editPassword' + JSON.stringify(res));
+						uni.showModal({
+							title: '提示',
+							content: '密码修改成功！',
+							showCancel: false,
+							success(res) {
+								uni.navigateBack({
+									delta: 1,
+								})
+							}
+						})
 					},
 					
 					fail: (err) => {

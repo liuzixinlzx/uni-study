@@ -12,7 +12,7 @@
 			<view class="text-area">
 				<text class="notitle">{{trainingData.descript}}</text>
 			</view>
-			<view style="width: 100%;">
+			<view style="width: 100%;" v-if="false">
 				<swiper class="screen-swiper swiper-height" :indicator-dots="indicatorDots" :autoplay="autoplay" :circular="true" :interval="interval" :duration="duration">
 					<swiper-item v-for="(item,index) in swiperList" :key="index">
 						<image :src="item.url" :mode="item.mode" v-if="item.type=='image'" class='swipper-img'></image>

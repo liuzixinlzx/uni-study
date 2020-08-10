@@ -23,7 +23,7 @@
 		data() {
 			return {
 				imgsrc: '/static/logo.png',
-				list:['姓名','电话','备注','版本'],
+				list:['版本'],
 				nickName: '请点击头像登陆'
 			}
 		},
@@ -42,6 +42,12 @@
 					if(res.data.headurl != null && res.data.headurl.length>0){
 						_this.imgsrc = res.data.headurl;
 					}
+					
+					if(res.data.username == 'admin'){
+						if (_this.list.length == 1){
+							_this.list.push('消息推送');
+						}
+					} 
 			    },
 			});
 		},

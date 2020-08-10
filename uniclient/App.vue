@@ -97,6 +97,7 @@
 					// plus.ui.alert(2);  
 					//这里可以写跳转业务代码
 					console.log("recevice:"+JSON.stringify(msg))
+					
 					 uni.showToast({
 						title: "recevice:"+JSON.stringify(msg),
 						duration: 5000

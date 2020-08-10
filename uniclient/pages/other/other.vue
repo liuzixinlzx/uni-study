@@ -1,30 +1,34 @@
 <template>
 	<view>
-		{{contents}}
+		<view v-if="index == '1'">
+			<push-message> </push-message>
+		</view>
+		<view v-else>
+			{{contents}}
+		</view>
 	</view>
 </template>
 
 <script>
+	import PushMessage from '@/pages/other/PushMessage/PushMessage'
 	export default {
+		components:{
+			PushMessage
+		},
 		data() {
 			return {
+				index: '0',
 				contents:'',
 			}
 		},
 		onLoad(options) {
 			console.log(options);
+			this.index = options.index;
 			switch (options.index){
 				case '0':
-					this.contents = "我的姓名";
+					this.getVersion();
 					break;
 				case '1':
-					this.contents = "我的电话";
-					break;
-				case '2':
-					this.contents = "我的备注";
-					break;
-				case '3':
-					this.getVersion();
 					break;
 				default:
 					this.contents = "好像出错啦";
