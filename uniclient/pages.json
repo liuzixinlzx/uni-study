@@ -3,21 +3,22 @@
 		{
 			"path": "pages/tabBar/index/index",
 			"style": {
-				"navigationStyle":"custom"
-				// "navigationBarTitleText": "首页"
+				//"navigationStyle":"custom"
+				"navigationBarTitleText": "首页"
 			}
 		}
 		,{
 		    "path" : "pages/tabBar/course/course",
 		    "style": {
-				"navigationStyle":"custom"
-		    	// "navigationBarTitleText": "课程表"
+				//"navigationStyle":"custom"
+		    	"navigationBarTitleText": "课程表"
 		    }
 		}
 		,{
 		    "path" : "pages/tabBar/message/message",
 		    "style" : {
-				"navigationStyle":"custom"
+				//"navigationStyle":"custom",
+				"navigationBarTitleText": "消息"
 			}
 		}
 		,{
@@ -91,7 +92,7 @@
 				"pagePath": "pages/tabBar/course/course",
 				"iconPath": "static/tabbar/plugin.png",
 				"selectedIconPath": "static/tabbar/plugin_cur.png",
-				"text": "课程"
+				"text": "课程表"
 			},
 			{
 				"pagePath": "pages/tabBar/message/message",

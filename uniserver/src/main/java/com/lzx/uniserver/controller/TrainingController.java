@@ -2,7 +2,7 @@ package com.lzx.uniserver.controller;
 
 
 import com.lzx.uniserver.entity.Training;
-import com.lzx.uniserver.service.impl.TrainingServiceImpl;
+import com.lzx.uniserver.service.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,7 +24,7 @@ import java.util.List;
 public class TrainingController {
 
     @Autowired
-    private TrainingServiceImpl trainingService;
+    private TrainingService trainingService;
 
     @RequestMapping("/list")
     public List<Training> getList(HttpServletRequest request) {

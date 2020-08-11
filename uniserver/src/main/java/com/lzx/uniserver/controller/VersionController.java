@@ -2,7 +2,7 @@ package com.lzx.uniserver.controller;
 
 
 import com.lzx.uniserver.entity.Version;
-import com.lzx.uniserver.service.impl.VersionServiceImpl;
+import com.lzx.uniserver.service.VersionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,7 +23,7 @@ import java.util.List;
 @RequestMapping("/version")
 public class VersionController {
     @Autowired
-    private VersionServiceImpl versionService;
+    private VersionService versionService;
 
     @RequestMapping("/list")
     public List<Version> getList(HttpServletRequest request) {

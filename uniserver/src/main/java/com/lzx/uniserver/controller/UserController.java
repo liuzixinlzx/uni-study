@@ -4,10 +4,10 @@ package com.lzx.uniserver.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.lzx.uniserver.interceptor.AuthorizationException;
 import com.lzx.uniserver.interceptor.LoginRequired;
+import com.lzx.uniserver.service.UserService;
 import com.lzx.uniserver.tool.Result;
 import com.lzx.uniserver.tool.TokenUtil;
 import com.lzx.uniserver.entity.User;
-import com.lzx.uniserver.service.impl.UserServiceImpl;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @RequestMapping("/login")
     public Result getList(HttpServletRequest request) {

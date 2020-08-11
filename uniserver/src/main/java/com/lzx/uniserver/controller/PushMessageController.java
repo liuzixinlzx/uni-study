@@ -1,6 +1,7 @@
 package com.lzx.uniserver.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.gexin.rp.sdk.base.IPushResult;
 import com.gexin.rp.sdk.base.impl.AppMessage;
 import com.gexin.rp.sdk.http.IGtPush;
@@ -54,7 +55,9 @@ public class PushMessageController {
 
     @RequestMapping("/list")
     public List<PushMessage> getList(HttpServletRequest request) {
-        return pushMessageService.list();
+        LambdaQueryWrapper<PushMessage> lqw = new LambdaQueryWrapper<>();
+        lqw.orderByDesc(PushMessage::getCreateTime);
+        return pushMessageService.list(lqw);
     }
     @LoginRequired
     @RequestMapping(value="/push", method = RequestMethod.POST)

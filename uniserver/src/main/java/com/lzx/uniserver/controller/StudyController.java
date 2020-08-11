@@ -3,7 +3,6 @@ package com.lzx.uniserver.controller;
 
 import com.lzx.uniserver.entity.Study;
 import com.lzx.uniserver.service.StudyService;
-import com.lzx.uniserver.service.impl.StudyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,7 +24,7 @@ import java.util.List;
 public class StudyController {
 
     @Autowired
-    private StudyServiceImpl studyService;
+    private StudyService studyService;
 
     @RequestMapping("/list")
     public List<Study> getList(HttpServletRequest request) {

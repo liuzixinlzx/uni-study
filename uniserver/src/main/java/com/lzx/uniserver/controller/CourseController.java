@@ -3,7 +3,7 @@ package com.lzx.uniserver.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.lzx.uniserver.entity.Course;
-import com.lzx.uniserver.service.impl.CourseServiceImpl;
+import com.lzx.uniserver.service.CourseService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +28,7 @@ import java.util.List;
 @RequestMapping("/course")
 public class CourseController {
     @Autowired
-    private CourseServiceImpl CourseService;
+    private CourseService CourseService;
 
     @RequestMapping("/list")
     public List<Course> getList(HttpServletRequest request) {

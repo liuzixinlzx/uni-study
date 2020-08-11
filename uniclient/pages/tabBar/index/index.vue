@@ -111,7 +111,7 @@
 
 <style>
 .phone-fit {
-	padding-top:var(--status-bar-height);
+	/* padding-top:var(--status-bar-height); */
 }
 
 .content {

@@ -4,7 +4,7 @@
 			 <view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in messageList" :key="index">
 				  <view class="uni-list-cell-navigate uni-navigate-right split-line">
 					   <view class="item-title">{{item.title}}</view>
-					   <view>{{item.content}}</view>
+					   <view class="item-content">{{item.content}}</view>
 					   <view class="item-time">{{item.createTime.split(' ')[0]}}</view>
 				  </view>
 			 </view>
@@ -52,15 +52,19 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	font-size: 50rpx;
+	font-size: 44rpx;
 	/* justify-content: center; */
+}
+
+.item-content {
+	font-size: 30rpx;
 }
 
 .item-time {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	font-size: 30rpx;
+	font-size: 36rpx;
 	/* justify-content: flex-end; */
 }
 </style>
