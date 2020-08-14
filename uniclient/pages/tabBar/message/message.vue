@@ -21,6 +21,10 @@
 		},
 		
 		onLoad() {
+			
+		},
+		
+		onShow() {
 			this.getMessageList();
 		},
 		
@@ -30,15 +34,10 @@
 				uni.request({
 					url: this.serverurl + "/push-message/list",
 					success(res) {
+						if (_this.messageList.length == res.data.length){
+							return;
+						}
 						_this.messageList = res.data; 
-						
-						setTimeout(()=>{
-							const sinfo = uni.getSystemInfoSync();   //获取手机可使用窗口高度     api为获取系统信息同步接口
-							uni.pageScrollTo({
-								scrollTop: sinfo.windowHeight,
-							}) 
-						}, 500);
-						
 					},
 					
 					fail() {

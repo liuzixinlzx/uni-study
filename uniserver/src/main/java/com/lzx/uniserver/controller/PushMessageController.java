@@ -56,7 +56,7 @@ public class PushMessageController {
     @RequestMapping("/list")
     public List<PushMessage> getList(HttpServletRequest request) {
         LambdaQueryWrapper<PushMessage> lqw = new LambdaQueryWrapper<>();
-        lqw.orderByAsc(PushMessage::getCreateTime);
+        lqw.orderByDesc(PushMessage::getCreateTime);
         return pushMessageService.list(lqw);
     }
     @LoginRequired

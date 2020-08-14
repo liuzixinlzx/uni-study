@@ -81,19 +81,20 @@
 			//通知
 			noticeMsg: function() {
 				var _this = this;
-				var info = plus.push.getClientInfo();
-				console.log( JSON.stringify( info ) );
 				 /* 5+  push 消息推送 ps:使用:H5+的方式监听，实现推送*/  
-				plus.push.addEventListener("click", function(msg) {  
+				plus.push.addEventListener('click', function(msg) {  
 						console.log("click:"+JSON.stringify(msg));  
 						uni.showToast({
 						 	title: "click:"+JSON.stringify(msg),
 						 	duration: 5000
 						})
 						//这里可以写跳转业务代码
+						uni.reLaunch({
+							url: "/pages/tabBar/message/message",
+						})
 				}, false);  
 					// 监听在线消息事件    
-				plus.push.addEventListener("receive", function(msg) {  
+				plus.push.addEventListener('receive', function(msg) {  
 					// plus.ui.alert(2);  
 					//这里可以写跳转业务代码
 					console.log("recevice:"+JSON.stringify(msg))
