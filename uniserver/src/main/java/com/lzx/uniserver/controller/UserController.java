@@ -10,9 +10,14 @@ import com.lzx.uniserver.tool.TokenUtil;
 import com.lzx.uniserver.entity.User;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +35,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Value("${download.path}")
+    private String downloadPath;
 
     @RequestMapping("/login")
     public Result getList(HttpServletRequest request) {
@@ -79,6 +87,89 @@ public class UserController {
         }else {
             return res.fail("fail");
         }
+    }
+
+    /* 上传头像 */
+    @LoginRequired
+    @RequestMapping(value = "/uploadHead", method = RequestMethod.POST)
+    public Result uploadHead(HttpServletRequest request, @RequestParam("file")MultipartFile file) {
+        Result res = new Result();
+        String accessToken = request.getHeader("accessToken");
+        Claims claims = TokenUtil.parseJWT(accessToken);
+        String id = claims.getId();
+
+        String fileName = file.getOriginalFilename();
+        int size = (int) file.getSize();
+        System.out.println(fileName + "-->" + size);
+
+        String path = downloadPath + id;
+        File dest = new File(path + "/" + fileName);
+        if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
+            dest.getParentFile().mkdir();
+        }
+
+        try {
+            file.transferTo(dest); //保存文件
+        } catch (IllegalStateException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return res.success("success");
+    }
+
+    /* 下载头像 */
+    @LoginRequired
+    @RequestMapping(value = "/downloadHead", method = RequestMethod.GET)
+    public String downloadHead(HttpServletRequest request,HttpServletResponse response) {
+        Result res = new Result();
+        String accessToken = request.getHeader("accessToken");
+        Claims claims = TokenUtil.parseJWT(accessToken);
+        String id = claims.getId();
+
+        User user = userService.getById(id);
+        String headUrl = user.getHeadurl();
+        String fileName = headUrl.substring(headUrl.lastIndexOf("/") + 1);
+        String filePathName = downloadPath + id + "/" + fileName;
+
+        File path = null;
+        response.setHeader("content-type", "application/octet-stream");
+        response.setContentType("application/octet-stream");
+        try {
+            response.setHeader("Content-Disposition", "attachment;filename=" + java.net.URLEncoder.encode(fileName, "UTF-8"));
+        } catch (UnsupportedEncodingException e2) {
+            e2.printStackTrace();
+        }
+        byte[] buff = new byte[1024];
+        BufferedInputStream bis = null;
+        OutputStream os = null;
+        try {
+            os = response.getOutputStream();
+            bis = new BufferedInputStream(new FileInputStream(new File(filePathName)));
+            int i = bis.read(buff);
+            while (i != -1) {
+                os.write(buff, 0, buff.length);
+                os.flush();
+                i = bis.read(buff);
+            }
+        } catch (FileNotFoundException e1) {
+            //e1.getMessage()+"系统找不到指定的文件";
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (bis != null) {
+                try {
+                    bis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return "success";
     }
 
     @LoginRequired

@@ -36,18 +36,33 @@
 		onShow() {
 			var _this = this;
 			uni.getStorage({
-			    key: 'userInfo',
-			    success: function (res) {
-			        console.log("storage userInfo:" + JSON.stringify(res));
-					_this.nickName = res.data.nickname; 
-					if(res.data.headurl != null && res.data.headurl.length>0){
-						_this.imgsrc = res.data.headurl;
-					}
+				key: 'accessToken',
+				success: function(res) {
+					var token = res.data;
 					
-					if(res.data.username == 'admin'){
-						_this.isAdmin = true;
-					} 
-			    },
+					uni.getStorage({
+					    key: 'userInfo',
+					    success: function (res) {
+					        console.log("storage userInfo:" + JSON.stringify(res));
+							_this.nickName = res.data.nickname; 
+							if(res.data.headurl != null && res.data.headurl.length>0){
+								_this.imgsrc = res.data.headurl;
+								plus.io.resolveLocalFileSystemURL(_this.imgsrc,
+								function(entry){
+									
+								}, function(e){ //本地图片不存在,使用后台图片
+									var fileName = _this.imgsrc.substring(_this.imgsrc.lastIndexOf("/") + 1);
+									_this.imgsrc = _this.serverurl + "/image/" + res.data.id + "/" + fileName;
+									// console.log("XXXX:" + _this.imgsrc);
+								})
+							}
+							
+							if(res.data.username == 'admin'){
+								_this.isAdmin = true;
+							} 
+					    },
+					});
+				},
 			});
 		},
 		

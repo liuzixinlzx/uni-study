@@ -36,7 +36,7 @@
 			</view>
 		</view>
 		<view v-if="index == 5" class="img-view">
-			<image :src="headPath" :mode="scaleToFill" class="img-style" @tap="pickPicture"> </image>
+			<image :src="headPath" mode="scaleToFill" class="img-style" @tap="pickPicture"> </image>
 		</view>
 		<view style="padding-top: 30rpx;"> 
 			<button type="primary" @click='onEdit'>确认修改</button>
@@ -81,6 +81,14 @@
 					_this.phone = res.data.phone;
 					if (res.data.headurl != null && res.data.headurl.length > 0){
 						_this.headPath = res.data.headurl;
+						plus.io.resolveLocalFileSystemURL(_this.headPath,
+						function(entry){
+							
+						}, function(e){ //本地图片不存在,使用后台图片
+							var fileName = _this.headPath.substring(_this.headPath.lastIndexOf("/") + 1);
+							_this.headPath = _this.serverurl + "/image/" + res.data.id + "/" + fileName;
+							// console.log("XXXX:" + _this.headPath);
+						})
 					}
 			    },
 			});
@@ -142,6 +150,17 @@
 				    success: function (res) {
 				        console.log(res.tempFilePaths[0]);
 						_this.headPath = res.tempFilePaths[0];
+						uni.uploadFile({
+							url: _this.serverurl + '/user/uploadHead',
+							filePath: res.tempFilePaths[0],
+							name: 'file',
+							header: {
+								'accessToken': _this.token
+							},
+							success(res) {
+								console.log(res);
+							}
+						});
 				    },
 					fail: function (err) {
 						console.log(err);

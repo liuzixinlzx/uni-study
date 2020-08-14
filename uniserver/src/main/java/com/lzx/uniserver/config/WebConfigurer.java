@@ -8,6 +8,7 @@ import com.lzx.uniserver.tool.Result;
 import com.lzx.uniserver.tool.ResultCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.annotation.Resource;
@@ -29,7 +31,15 @@ public class WebConfigurer implements WebMvcConfigurer{
     @Resource
     AuthenticationInterceptor authenticationInterceptor;
 
+    @Value("${download.path}")
+    private String downloadPath;
+
     private final Logger logger = LoggerFactory.getLogger(WebConfigurer.class);
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/image/**").addResourceLocations("file:" + downloadPath + "/");
+    }
 
     // 统一异常处理
     @Override
