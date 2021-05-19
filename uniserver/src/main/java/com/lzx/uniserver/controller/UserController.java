@@ -102,8 +102,11 @@ public class UserController {
         int size = (int) file.getSize();
         System.out.println(fileName + "-->" + size);
 
-        String path = downloadPath + id;
-        File dest = new File(path + "/" + fileName);
+         int index = fileName.lastIndexOf(".");
+        String endfix = fileName.substring(index+1);
+        String filePath = downloadPath + "/image/" + id + "." + endfix;
+
+        File dest = new File(filePath);
         if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
             dest.getParentFile().mkdir();
         }
@@ -118,7 +121,7 @@ public class UserController {
             e.printStackTrace();
         }
 
-        return res.success("success");
+        return res.success("/image/" + id + "." + endfix);
     }
 
     /* 下载头像 */

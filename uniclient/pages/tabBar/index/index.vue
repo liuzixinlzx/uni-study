@@ -6,12 +6,6 @@
 				<text class="title">{{title}}</text>
 			</view>
 	-->
-			<view class="title-area">
-				<text class="title">{{trainingData.name}}</text>
-			</view>
-			<view class="text-area">
-				<text class="notitle">{{trainingData.descript}}</text>
-			</view>
 			<view class="swiper-style">
 				<swiper class="screen-swiper swiper-height" :indicator-dots="indicatorDots" :autoplay="autoplay" :circular="true" :interval="interval" :duration="duration">
 					<swiper-item v-for="(item,index) in swiperList" :key="index">
@@ -19,6 +13,12 @@
 						<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
 					</swiper-item>
 				</swiper>
+			</view>
+			<view class="title-area">
+				<text class="title">{{trainingData.name}}</text>
+			</view>
+			<view class="text-area">
+				<text class="notitle">{{trainingData.descript}}</text>
 			</view>
 			<view class="bottom-area">
 				<view class="text-area">
@@ -133,11 +133,13 @@
 .title-area {
 	display: flex;
 	justify-content: center;
+	margin-top: 20rpx;
 }
 
 .text-area {
 	display: flex;
 	justify-content: left;
+	margin-top: 20rpx;
 }
 
 .title {
@@ -162,16 +164,16 @@
 }
 
 .swiper-style {
-	position: absolute;
+	/* display: flex; */
+	/* position: absolute; */
 	width: 100%;
-	bottom: 130rpx;
 }
 
 .swiper-height {
-	height: 500rpx;
+	height: 400rpx;
 }
 .swipper-img {
 	width: 100%;
-	height: 500rpx;
+	height: 400rpx;
 }
 </style>

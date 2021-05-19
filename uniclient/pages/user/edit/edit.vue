@@ -65,6 +65,7 @@
 				newPassword2: '',
 				
 				headPath: '/static/head.png',
+				remoteHeadPath: '',
 				
 				token: null,
 			}
@@ -80,14 +81,13 @@
 					_this.age = res.data.age;
 					_this.phone = res.data.phone;
 					if (res.data.headurl != null && res.data.headurl.length > 0){
-						_this.headPath = res.data.headurl;
+						_this.headPath = _this.serverurl + res.data.headurl;
 						plus.io.resolveLocalFileSystemURL(_this.headPath,
 						function(entry){
 							
 						}, function(e){ //本地图片不存在,使用后台图片
-							var fileName = _this.headPath.substring(_this.headPath.lastIndexOf("/") + 1);
-							_this.headPath = _this.serverurl + "/image/" + res.data.id + "/" + fileName;
-							// console.log("XXXX:" + _this.headPath);
+							_this.remoteHeadPath = _this.headPath;
+							console.log("XXXX1:" + _this.remoteHeadPath);
 						})
 					}
 			    },
@@ -158,7 +158,11 @@
 								'accessToken': _this.token
 							},
 							success(res) {
-								console.log(res);
+								var data = JSON.parse(res.data);
+								console.log(data);
+								//1、使用eval方法  
+								_this.remoteHeadPath= data.data;
+								console.log("XXXX2:" + _this.remoteHeadPath);
 							}
 						});
 				    },
@@ -195,7 +199,7 @@
 						_this.editPassword();
 						return;
 					case '5':
-						data = {'headurl': this.headPath};
+						data = {'headurl': _this.remoteHeadPath};
 						break;
 				}
 

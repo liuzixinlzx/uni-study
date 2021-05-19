@@ -38,7 +38,8 @@ public class WebConfigurer implements WebMvcConfigurer{
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/image/**").addResourceLocations("file:" + downloadPath + "/");
+        registry.addResourceHandler("/image/**").addResourceLocations("file:" + downloadPath + "/image/");
+        registry.addResourceHandler("/file/**").addResourceLocations("file:" + downloadPath + "/file/");
     }
 
     // 统一异常处理
